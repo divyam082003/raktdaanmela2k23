@@ -386,13 +386,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svData"
+        app:layout_constraintTop_toBottomOf="@id/svData"
         android:textSize="12sp"
         android:text="Developer Information"
         android:textAlignment="center"
         android:padding="2dp"
         android:layout_margin="4dp"
-        android:textColor="@color/red_fade"
+        android:textColor="@color/red"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -34,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -47,7 +49,8 @@ public class RegistrationForm extends AppCompatActivity {
     RadioButton male,female;
 
     Spinner spinnerDonorType,spinnerBloodGroup,spinnerBloodBank,spinnerYear,spinnerHostel;
-    Button logOut,submit;
+    Button logOut,submit,resetPassword;
+    TextView AdminInfo;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -68,6 +71,7 @@ public class RegistrationForm extends AppCompatActivity {
         //firebase instance
         auth = FirebaseAuth.getInstance();
         uid = auth.getCurrentUser().getUid();
+        String email = auth.getCurrentUser().getEmail();
         database = FirebaseDatabase.getInstance();
 
 
@@ -77,6 +81,8 @@ public class RegistrationForm extends AppCompatActivity {
         //button id
         logOut = findViewById(R.id.btAdminLogOut);
         submit = findViewById(R.id.btSubmit);
+        resetPassword = findViewById(R.id.btAdminResetPassword);
+        AdminInfo = findViewById(R.id.tvAdminInfo);
 
         //editText
         name  = findViewById(R.id.etName);
@@ -98,13 +104,20 @@ public class RegistrationForm extends AppCompatActivity {
         spinnerBloodGroup = findViewById(R.id.spinnerBloodGroup);
         spinnerBloodBank = findViewById(R.id.spinnerBloodBank);
 
-
-
-
+        //setting admin info
+        AdminInfo.setText("Hi, "+email);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showSignOutDialog();
+            }
+        });
+
+        //resetPassword
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResetPassword();
             }
         });
 
@@ -215,6 +228,7 @@ public class RegistrationForm extends AppCompatActivity {
     }
 
     void addData(Model model){
+        Date currentDateAndTime = new Date();
         HashMap<String,Object> m = new HashMap <String,Object> ();
         m.put(FinalStaticStrings.DONOR_TYPE, model.getDonorType());
         m.put(FinalStaticStrings.DONOR_NAME, model.getDonorName());
@@ -229,6 +243,7 @@ public class RegistrationForm extends AppCompatActivity {
         m.put(FinalStaticStrings.DONOR_MOBILE, model.getDonorMobile());
         m.put(FinalStaticStrings.DONOR_ADDRESS, model.getDonorAddress());
         m.put(FinalStaticStrings.ADMIN_ID, uid);
+        m.put(FinalStaticStrings.TIME_STAMP, currentDateAndTime.toString());
         FirebaseDatabase.getInstance().getReference()
                 .child("DonorData")
                 .push()
@@ -244,5 +259,17 @@ public class RegistrationForm extends AppCompatActivity {
                 });
     }
 
-
+    void setResetPassword(){
+        auth.sendPasswordResetEmail(auth.getCurrentUser().getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) Toast.makeText(RegistrationForm.this,
+                        "Password Reset Email Sent to: "+ auth.getCurrentUser().getEmail(),
+                        Toast.LENGTH_LONG ).show();
+                else  Toast.makeText(RegistrationForm.this,
+                        "Error Occured",
+                        Toast.LENGTH_LONG ).show();
+            }
+        });
+    }
 }
