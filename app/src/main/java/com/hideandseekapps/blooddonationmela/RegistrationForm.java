@@ -45,10 +45,10 @@ public class RegistrationForm extends AppCompatActivity {
             donorGender,donorHostel,donorBloodGrp,donorBloodBank,donorMobile,donorAddress;
 
     RadioGroup gender;
-    EditText name,institute,rollNumber,branch,mobileNum,address;
+    EditText name,rollNumber,branch,mobileNum,address;
     RadioButton male,female;
 
-    Spinner spinnerDonorType,spinnerBloodGroup,spinnerBloodBank,spinnerYear,spinnerHostel;
+    Spinner spinnerDonorType,spinnerInstitute,spinnerBloodGroup,spinnerBloodBank,spinnerYear,spinnerHostel;
     Button logOut,submit,resetPassword;
     TextView AdminInfo;
 
@@ -86,7 +86,6 @@ public class RegistrationForm extends AppCompatActivity {
 
         //editText
         name  = findViewById(R.id.etName);
-        institute  = findViewById(R.id.etInstituteName);
         rollNumber  = findViewById(R.id.etRollCode);
         branch  = findViewById(R.id.etBranch);
         mobileNum  = findViewById(R.id.etMobileNum);
@@ -99,6 +98,7 @@ public class RegistrationForm extends AppCompatActivity {
 
         //spinners
         spinnerDonorType = findViewById(R.id.spinnerDonorType);
+        spinnerInstitute = findViewById(R.id.spinnerInstitute);
         spinnerYear = findViewById(R.id.spinnerYear);
         spinnerHostel = findViewById(R.id.spinnerHostel);
         spinnerBloodGroup = findViewById(R.id.spinnerBloodGroup);
@@ -125,8 +125,12 @@ public class RegistrationForm extends AppCompatActivity {
                 ,FinalStaticStrings.STRING_Non_Teacher,
                 FinalStaticStrings.STRING_Alumni,FinalStaticStrings.STRING_Guest};
 
-        String[] yearOptions = {"","I", "II", "III", "IV"};
-        String[] hostelOptions = {"","Hosteler", "Non-Hosteler"};
+        String[] instituteOptions = {"-",FinalStaticStrings.STRING_JMIT,
+                FinalStaticStrings.STRING_JMIETI,
+                FinalStaticStrings.STRING_COLLEGE_OTHERS};
+
+        String[] yearOptions = {"-","I", "II", "III", "IV"};
+        String[] hostelOptions = {"-","Hosteler", "Non-Hosteler"};
         String[] bloodGroupsOptions = {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
 
         String[] bloodBankOption = {FinalStaticStrings.STRING_PGI,FinalStaticStrings.STRING_RedCross,FinalStaticStrings.STRING_Others};
@@ -136,6 +140,7 @@ public class RegistrationForm extends AppCompatActivity {
         setSpinner(spinnerHostel,hostelOptions);
         setSpinner(spinnerBloodGroup,bloodGroupsOptions);
         setSpinner(spinnerBloodBank,bloodBankOption);
+        setSpinner(spinnerInstitute,instituteOptions);
 
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +187,7 @@ public class RegistrationForm extends AppCompatActivity {
     Model collectData (){
          donorType = spinnerDonorType.getSelectedItem().toString();
          donorName = name.getText().toString().trim();
-         donorInstituteName = institute.getText().toString().trim();
+         donorInstituteName = spinnerInstitute.getSelectedItem().toString();
          donorRollNum = rollNumber.getText().toString().trim();
          donorBranch = branch.getText().toString().trim();
          donorYear = spinnerYear.getSelectedItem().toString();
@@ -218,7 +223,6 @@ public class RegistrationForm extends AppCompatActivity {
 
     void clearFields(){
         name.setText("");
-        institute.setText("");
         rollNumber.setText("");
         branch.setText("");
         mobileNum.setText("");

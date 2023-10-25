@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     Button admin;
-    TextView total,pgi,redcross,other,student,teacher,nonTeacher,alumni,guest;
+    TextView total,pgi,redcross,other,student,teacher,nonTeacher,alumni,guest,jmit,jmieti,otherCollege;
     TextView liveData,devInfo;
 
 
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList <Model> arrayList;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
         nonTeacher = findViewById(R.id.tvNonTeaching);
         alumni = findViewById(R.id.tvAlumni);
         guest = findViewById(R.id.tvGuest);
+        jmit = findViewById(R.id.tvJMITregister);
+        jmieti = findViewById(R.id.tvJMIETIregister);
+        otherCollege = findViewById(R.id.tvOtherCllgregister);
 
 
 
@@ -126,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 total.setText(String.valueOf(dataSnapshot.getChildrenCount()));
                 int istudent = 0;int iTeacher = 0;int iNonTeacher = 0;int iAlumni = 0;int iGuest= 0;
-                int iPgi = 0;int iRedCross = 0;int iOther = 0;
+                int iPgi = 0;int iRedCross = 0;int iOther = 0; int ijmit=0; int ijmieti = 0; int iotherCollege=0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Model donor;
                     donor = snapshot.getValue(Model.class);
@@ -154,6 +159,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if (donor.getDonorBloodBank().equals(FinalStaticStrings.STRING_Others)) {
                         other.setText(String.valueOf(++iOther));
+                    }
+
+                    //collegeWise
+                    if (donor.getDonorInstituteName().equals(FinalStaticStrings.STRING_JMIT)){
+                        jmit.setText(String.valueOf(++ijmit));
+                    } else if (donor.getDonorInstituteName().equals(FinalStaticStrings.STRING_JMIETI)) {
+                        jmieti.setText(String.valueOf(++ijmieti));
+                    } else if (donor.getDonorInstituteName().equals(FinalStaticStrings.STRING_COLLEGE_OTHERS)) {
+                        otherCollege.setText(String.valueOf(++iotherCollege));
                     }
                 }
             }

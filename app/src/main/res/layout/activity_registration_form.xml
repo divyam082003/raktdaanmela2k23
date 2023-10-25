@@ -119,15 +119,41 @@
                 android:layout_margin="4dp"
                 android:singleLine="true"
                 />
-            <EditText
-                android:id="@+id/etInstituteName"
+
+
+<!--            <EditText-->
+<!--                android:id="@+id/etInstituteName"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Institute Name"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:singleLine="true"-->
+<!--                />-->
+
+            <!--Institute Name-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Institute Name"
-                android:textSize="16sp"
-                android:layout_margin="4dp"
-                android:singleLine="true"
-                />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvInstitute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="College"
+                    android:textSize="16sp"
+                    android:layout_margin="4dp"
+                    />
+                <Spinner
+                    android:id="@+id/spinnerInstitute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    />
+
+            </LinearLayout>
+
+
             <EditText
                 android:id="@+id/etRollCode"
                 android:layout_width="match_parent"

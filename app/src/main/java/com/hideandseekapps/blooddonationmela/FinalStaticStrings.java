@@ -30,6 +30,10 @@ public class FinalStaticStrings {
     public static final String STRING_Non_Teacher = "Non-Teacher";
     public static final String STRING_Alumni = "Alumni";
     public static final String STRING_Guest = "Guest";
+    public static final String STRING_JMIT = "JMIT";
+    public static final String STRING_JMIETI = "JMIETI";
+    public static final String STRING_COLLEGE_OTHERS = "Others";
+
 
 
 }
