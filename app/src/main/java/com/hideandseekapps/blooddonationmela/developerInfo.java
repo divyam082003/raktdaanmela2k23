@@ -16,6 +16,6 @@ public class developerInfo extends AppCompatActivity {
         Window window = developerInfo.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(developerInfo.this,R.color.red));
+        window.setStatusBarColor(ContextCompat.getColor(developerInfo.this,R.color.my_red_color_secondary_variant));
     }
 }

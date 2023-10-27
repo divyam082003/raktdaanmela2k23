@@ -18,8 +18,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="Reset Password"
         android:textSize="10sp"
-        android:layout_margin="12dp"
-        android:backgroundTint="@color/red"
+        android:layout_margin="16dp"
         android:layout_gravity="end"
         />
     <TextView
@@ -30,6 +29,9 @@
         app:layout_constraintTop_toBottomOf="@id/btAdminResetPassword"
         android:text="Admin"
         android:layout_margin="8dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         />
 
         <Button
@@ -40,8 +42,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:text="LogOut"
             android:textSize="10sp"
-            android:layout_margin="12dp"
-            android:backgroundTint="@color/red"
+            android:layout_margin="16dp"
             android:layout_gravity="end"
             />
 
@@ -54,11 +55,17 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:text="Blood Donor Registration"
-            android:textSize="20sp"
-            android:layout_margin="20dp"
-            android:textColor="@color/red"
+            android:textSize="22sp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/my_red_color"
             android:textAlignment="center"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="@drawable/border"
+            android:padding="4dp"
+            />
 
 
     <!--  FORM SCROLL VIEW  <>-->
@@ -71,8 +78,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:fadeScrollbars="true"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:padding="4dp"
+        android:background="@drawable/border"
         >
 
         <LinearLayout
@@ -85,7 +96,10 @@
             <!--  DONOR TYPE  <>-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
 
                 <TextView
                     android:id="@+id/tvType"
@@ -93,14 +107,13 @@
                     android:layout_height="wrap_content"
                     android:text="Donor Type (*) "
                     android:textSize="16sp"
-                    android:textColor="@color/red"
-                    android:layout_margin="4dp"
+                    android:textColor="@color/my_red_color"
+                    android:textStyle="bold"
                     />
                 <Spinner
                     android:id="@+id/spinnerDonorType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
                     />
 
             </LinearLayout>
@@ -110,15 +123,25 @@
 
             <!--  INFO FIELDS LIKE name,rollNumber,institute,branch,year  <>-->
 
-            <EditText
-                android:id="@+id/etName"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Donor Name (*)"
-                android:textSize="16sp"
-                android:layout_margin="4dp"
-                android:singleLine="true"
-                />
+                android:layout_margin="8dp"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Donor Name (*)"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
 <!--            <EditText-->
@@ -134,7 +157,10 @@
             <!--Institute Name-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
 
                 <TextView
                     android:id="@+id/tvInstitute"
@@ -142,58 +168,80 @@
                     android:layout_height="wrap_content"
                     android:text="College"
                     android:textSize="16sp"
-                    android:layout_margin="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_red_color"
                     />
                 <Spinner
                     android:id="@+id/spinnerInstitute"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+
                     />
 
             </LinearLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                >
 
-            <EditText
-                android:id="@+id/etRollCode"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRollCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Roll Number"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:layout_margin="2dp"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Roll Number"
-                android:textSize="16sp"
-                android:layout_margin="4dp"
-                android:inputType="number"
-                android:singleLine="true"
-                />
-            <EditText
-                android:id="@+id/etBranch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Branch"
-                android:textSize="16sp"
-                android:layout_margin="4dp"
-                android:singleLine="true"
-                />
+                android:layout_margin="8dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBranch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Branch"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <!--Year Spinner-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
 
                 <TextView
                     android:id="@+id/tvYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Year  "
+                    android:textStyle="bold"
                     android:textSize="16sp"
-                    android:layout_margin="4dp"
-
+                    android:textColor="@color/my_red_color"
                     />
                 <Spinner
                     android:id="@+id/spinnerYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
                     />
 
             </LinearLayout>
@@ -205,6 +253,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_margin="8dp"
+
                 >
                 >
                 <TextView
@@ -212,8 +262,8 @@
                     android:layout_height="wrap_content"
                     android:text="Gender (*) "
                     android:textSize="16sp"
-                    android:layout_margin="4dp"
-                    android:textColor="@color/red"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_red_color"
                     />
 
 
@@ -222,16 +272,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="male"
-                    android:layout_margin="4dp"
-                    android:checked="true"
 
+                    android:checked="true"
                     />
                 <RadioButton
                     android:id="@+id/rbFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="female"
-                    android:layout_margin="4dp"
+
                     />
 
             </RadioGroup>
@@ -239,21 +288,25 @@
             <!--Hosteller/non-hosteller Spinner -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
 
                 <TextView
                     android:id="@+id/tvIsHosteler"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Is Hosteler ?"
+                    android:text="Hostel Status"
                     android:textSize="16sp"
-                    android:layout_margin="4dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_red_color"
                     />
                 <Spinner
                     android:id="@+id/spinnerHostel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+
                     />
 
             </LinearLayout>
@@ -262,7 +315,10 @@
             <!--      Blood Group      -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
 
                 <TextView
                     android:id="@+id/tvBloodGroup"
@@ -270,14 +326,13 @@
                     android:layout_height="wrap_content"
                     android:text="Blood Group (*) "
                     android:textSize="16sp"
-                    android:layout_margin="4dp"
-                    android:textColor="@color/red"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_red_color"
                     />
                 <Spinner
                     android:id="@+id/spinnerBloodGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
                     />
 
             </LinearLayout>
@@ -285,45 +340,68 @@
             <!--Blood Bank-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                >
                 <TextView
                     android:id="@+id/tvBloodBank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Blood Bank (*) "
                     android:textSize="16sp"
-                    android:layout_margin="4dp"
-                    android:textColor="@color/red"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_red_color"
                     />
                 <Spinner
                     android:id="@+id/spinnerBloodBank"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+
                     />
 
             </LinearLayout>
 
 
-            <EditText
-                android:id="@+id/etMobileNum"
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mobile Number (*)"
-                android:textSize="16sp"
-                android:layout_margin="4dp"
-                android:inputType="phone"
-                android:singleLine="true"
-                />
-            <EditText
-                android:id="@+id/etAddress"
+                android:layout_margin="8dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMobileNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile Number (*)"
+                    android:textSize="16sp"
+                    android:inputType="phone"
+                    android:singleLine="true"
+
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address"
-                android:textSize="16sp"
-                android:layout_margin="4dp"
-                />
+                android:layout_margin="8dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:textSize="16sp"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
             <Button
                 android:id="@+id/btSubmit"
@@ -332,9 +410,8 @@
                 android:text="Submit"
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:layout_margin="4dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/red"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 />
         </LinearLayout>
     </ScrollView>

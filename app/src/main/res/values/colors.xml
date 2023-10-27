@@ -8,4 +8,11 @@
     <color name="yellow">#EDEB72</color>
     <color name="sky_blue">#82E4CA</color>
     <color name="green">#1ABA1F</color>
+
+
+    <color name="my_red_color">#FF5733</color>
+    <color name="my_red_color_variant">#E84A27</color>
+    <color name="my_red_color_secondary">#FF5733</color>
+    <color name="my_red_color_secondary_variant">#D3411E</color>
+
 </resources>

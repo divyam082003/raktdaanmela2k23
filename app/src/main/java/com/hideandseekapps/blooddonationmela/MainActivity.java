@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 blinkingTextView.setVisibility(View.VISIBLE);
             }
             // Continue the blinking by posting the runnable again
-            handler.postDelayed(this, 150); // Adjust the interval as needed
+            handler.postDelayed(this, 800); // Adjust the interval as needed
         }
     };
 
@@ -50,11 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
-
-    ArrayList <Model> arrayList;
-
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         Window window = MainActivity.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.red));
+        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.my_red_color_secondary_variant));
 
          admin = findViewById(R.id.btAdmin);
          mAuth = FirebaseAuth.getInstance();
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
          other = findViewById(R.id.tvOtherRegister);
          student = findViewById(R.id.tvStudents);
          teacher = findViewById(R.id.tvTeaching);
-        nonTeacher = findViewById(R.id.tvNonTeaching);
+         nonTeacher = findViewById(R.id.tvNonTeaching);
         alumni = findViewById(R.id.tvAlumni);
         guest = findViewById(R.id.tvGuest);
         jmit = findViewById(R.id.tvJMITregister);

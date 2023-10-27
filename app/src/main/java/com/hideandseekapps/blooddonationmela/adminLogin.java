@@ -16,16 +16,21 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class adminLogin extends AppCompatActivity {
 
-    EditText UserID,Password;
+    TextInputEditText UserID,Password;
+    TextInputLayout userIDLayout;
+    TextView forgotPassword;
     Button login;
 
     //FirebaseAuthentication
@@ -39,11 +44,21 @@ public class adminLogin extends AppCompatActivity {
         Window window = adminLogin.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(adminLogin.this,R.color.red));
+        window.setStatusBarColor(ContextCompat.getColor(adminLogin.this,R.color.my_red_color_variant));
 
+        userIDLayout = findViewById(R.id.userIDLayout);
         UserID = findViewById(R.id.UserId);
         Password = findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.tvforgotPassword);
         login = findViewById(R.id.BTNlogin);
+
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               checkCredentialIsEmpty(UserID.getText().toString());
+            }
+        });
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +84,28 @@ public class adminLogin extends AppCompatActivity {
              // Call the login function
              return true;
          }
+    }
+
+    void checkCredentialIsEmpty(String userID) {
+        if (TextUtils.isEmpty(userID)) {
+            Toast.makeText(adminLogin.this, "Please enter email", Toast.LENGTH_SHORT).show();
+            userIDLayout.setError("Fill to reset password");
+        } else {
+            // Call the login function
+            userIDLayout.setError("");
+            resetPassword();
+        }
+    }
+
+    private void resetPassword(){
+        firebaseAuth.sendPasswordResetEmail(UserID.getText().toString())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) Toast.makeText(adminLogin.this,"Password reset link sent to your email",Toast.LENGTH_SHORT).show();
+                        else Toast.makeText(adminLogin.this,"userID not registered",Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void loginUser(String userID, String password) {

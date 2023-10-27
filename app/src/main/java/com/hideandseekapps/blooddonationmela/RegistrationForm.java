@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +46,7 @@ public class RegistrationForm extends AppCompatActivity {
             donorGender,donorHostel,donorBloodGrp,donorBloodBank,donorMobile,donorAddress;
 
     RadioGroup gender;
-    EditText name,rollNumber,branch,mobileNum,address;
+    TextInputEditText name,rollNumber,branch,mobileNum,address;
     RadioButton male,female;
 
     Spinner spinnerDonorType,spinnerInstitute,spinnerBloodGroup,spinnerBloodBank,spinnerYear,spinnerHostel;
@@ -66,7 +67,7 @@ public class RegistrationForm extends AppCompatActivity {
         Window window = RegistrationForm.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(RegistrationForm.this,R.color.red));
+        window.setStatusBarColor(ContextCompat.getColor(RegistrationForm.this,R.color.my_red_color_secondary_variant));
 
         //firebase instance
         auth = FirebaseAuth.getInstance();
@@ -117,7 +118,7 @@ public class RegistrationForm extends AppCompatActivity {
         resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResetPassword();
+                showResetPasswordDialog();
             }
         });
 
@@ -183,16 +184,40 @@ public class RegistrationForm extends AppCompatActivity {
         dialog.show();
     }
 
+    private void showResetPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Reset Password");
+        builder.setMessage("Are you sure you want to reset your password ?\n(Password reset link will be send to your registered email)");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Sign out the user
+                setResetPassword();
+                // You can also navigate to the login screen or perform other actions here.
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Dismiss the dialog
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
     Model collectData (){
          donorType = spinnerDonorType.getSelectedItem().toString();
          donorName = name.getText().toString().trim();
-         donorInstituteName = spinnerInstitute.getSelectedItem().toString();
+         donorInstituteName = checkSpinnerNullValue(spinnerInstitute);
          donorRollNum = rollNumber.getText().toString().trim();
          donorBranch = branch.getText().toString().trim();
-         donorYear = spinnerYear.getSelectedItem().toString();
+         donorYear = checkSpinnerNullValue(spinnerYear);
          donorGender = getSelectedRadioButtonText(gender);
-         donorHostel = spinnerHostel.getSelectedItem().toString();
+         donorHostel = checkSpinnerNullValue(spinnerHostel);
          donorBloodGrp = spinnerBloodGroup.getSelectedItem().toString();
          donorBloodBank = spinnerBloodBank.getSelectedItem().toString();
          donorMobile = mobileNum.getText().toString().trim();
@@ -275,5 +300,10 @@ public class RegistrationForm extends AppCompatActivity {
                         Toast.LENGTH_LONG ).show();
             }
         });
+    }
+
+    String checkSpinnerNullValue(Spinner spinnerYear){
+        if (spinnerYear.getSelectedItem().toString().equals("-")) return "";
+        else return spinnerYear.getSelectedItem().toString();
     }
 }

@@ -17,21 +17,52 @@
         android:layout_margin="50dp"
         >
 
-        <EditText
-            android:id="@+id/UserId"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userIDLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="UserID"
-            android:textSize="18sp"
-            android:inputType="textEmailAddress"
-            />
-        <EditText
-            android:id="@+id/password"
+            android:layout_margin="8dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/UserId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="UserID"
+                android:textSize="18sp"
+                android:inputType="textEmailAddress"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:textSize="18sp"
-            android:inputType="numberPassword"
+            android:layout_margin="8dp"
+            >
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:textSize="18sp"
+                android:inputType="textPassword"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvforgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password"
+            android:textColor="@color/my_red_color"
+            android:layout_gravity="end"
+            android:layout_margin="8dp"
+            android:textSize="12sp"
             />
 
         <Button
@@ -40,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="login"
-            android:backgroundTint="@color/red"
+            android:layout_margin="16dp"
             />
 
     </LinearLayout>
